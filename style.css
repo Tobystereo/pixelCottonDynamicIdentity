@@ -25,9 +25,6 @@ body {
   padding: .5rem;
   transition: all 0.1s ease-in;
 
-  border-radius: 5px;
-  box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
-
   overflow:hidden;
 }
 
