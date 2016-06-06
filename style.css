@@ -1,0 +1,67 @@
+body {
+  background-color: rgb(33, 37, 43);
+  margin: 0 auto;
+}
+
+.card_container {
+  display: block;
+  position: relative;
+  margin: 350px auto;
+  width: 90vw;
+}
+
+.card {
+  display: block;
+  position: relative;
+  float: left;
+  margin: 0 1rem 1rem 0;
+  width: 256px;
+  background: rgba(33, 37, 43, .5);
+  outline: 1px solid #49525E;
+  padding: .5rem;
+  transition: all 0.1s ease-in;
+}
+
+.card.locked {
+  opacity: 0.5;
+}
+
+.card:hover {
+  background-color: #49525E;
+}
+
+.card.locked:hover {
+  background: rgba(33, 37, 43, .5);
+}
+
+.card figure {
+  width: 256px;
+  height: 256px;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.card img {
+  width: 100%;
+  transition: all 0.1s ease-out;
+  margin: 0;
+}
+
+.card:hover img {
+  width: 150%;
+  margin: -25%;
+}
+
+
+
+
+#logoContainer {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 400px;
+}
