@@ -240,11 +240,11 @@
 
 	// handle window resize
 	window.addEventListener('resize', function(){
-		setLogoSize()
-		renderer.setSize( logo_width, logo_height )
+		setLogoSize();
+		renderer.setSize( logo_width, logo_height );
 		// renderer.setSize( window.innerWidth, window.innerHeight )
-		camera.aspect	= logo_width / logo_height
-		camera.updateProjectionMatrix()
+		camera.aspect	= logo_width / logo_height;
+		camera.updateProjectionMatrix();
 	}, false)
 
 	// get mouse position
@@ -267,16 +267,20 @@
 
 	// render the scene
 	onRenderFcts.push(function(){
-		if(logoContainer.scrollTop >= document.body.scrollTop) {
+		// only render the scene, when it is inside the viewport
+		if(logoContainer.scrollTop+logo_height >= document.body.scrollTop) {
+
 			rotateShards();
 
+			// move one light with the mouse position
 			light_mouse.position.set( mouse_x_pos.map(0,window.innerWidth,-50,50), mouse_y_pos.map(0,window.innerHeight,50,-50), 80 );
 
 			renderer.render( scene, camera );
+
 		}
 	})
 
-
+	// append the canvas element to the 'logoContainer' DOM element
 	var rendererDomElement = renderer.domElement;
 	logoContainer.appendChild(rendererDomElement);
 
@@ -304,8 +308,25 @@
 			shards[i].rotation.y -= SPEED;
 			shards[i].rotation.z -= SPEED * shardRotation[i];
 		}
-
 	}
 
 
-</script></body>
+</script>
+
+<script>
+	// parallax effect for cards
+	var cards = document.getElementsByClassName('card');
+	var cardIterator = 0;
+	for (card in cards) {
+		this.addEventListener('mousemove', cardParallaxEffect(this));
+		this.style.transform('rotateY(-1)');
+		cardIterator++;
+	}
+
+	function cardParallaxEffect(el) {
+		el.style.transform('rotateY(-1px)');
+	}
+
+</script>
+
+</body>

@@ -10,6 +10,10 @@ body {
   width: 90vw;
 }
 
+.card_container * {
+  box-sizing: border-box !important;
+}
+
 .card {
   display: block;
   position: relative;
@@ -17,9 +21,14 @@ body {
   margin: 0 1rem 1rem 0;
   width: 256px;
   background: rgba(33, 37, 43, .5);
-  outline: 1px solid #49525E;
+  border: 1px solid #49525E;
   padding: .5rem;
   transition: all 0.1s ease-in;
+
+  border-radius: 5px;
+  box-shadow: 0 45px 100px rgba(0, 0, 0, 0.4);
+
+  overflow:hidden;
 }
 
 .card.locked {
@@ -28,6 +37,7 @@ body {
 
 .card:hover {
   background-color: #49525E;
+  transform: rotateY(15deg);
 }
 
 .card.locked:hover {
