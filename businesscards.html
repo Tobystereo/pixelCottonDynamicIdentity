@@ -2,6 +2,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<script src='vendor/three.js/build/three.min.js'></script>
+	<script src='vendor/three.js/build/FontLoader.js'></script>
 
 
 	<script src='games_and_color_variables.js'></script>
@@ -92,6 +93,10 @@
 		#renderButton:active {
 			background-color: hsl(38, 100%, 45%);
 		}
+
+		input[type=checkbox] {
+			margin-right: 1rem;
+		}
 	</style>
 </head>
 <body>
@@ -99,6 +104,9 @@
 		<h1>PixelCotton Print Graphic Generator</h1>
 		<label for="canvasWidth">Width in pixels: </label><input type="text" id="canvasWidth" placeholder="width" value="1004">
 		<label for="canvasHeight">Height in pixels: </label><input type="text" id="canvasHeight" placeholder="height" value="650">
+		<label for="showlogo">show logo: </label><input type="checkbox" id="showlogo" checked=checked>
+		<label for="centered">center logo: </label><input type="checkbox" id="centered" checked=checked>
+		<label for="showname">show name: </label><input type="checkbox" id="showname" checked=checked>
 		<hr>
 		<input type="text" id="textfield" placeholder="enter your name">
 		<div id="renderButton">Render</div>

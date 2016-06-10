@@ -27,6 +27,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 var logoContainer, printOutputContainer, logo_width, logo_height;
+var textfield = 'Your Name';
+var textfieldOriginal = 'Your Name';
 // array of functions for the rendering loop
 var onRenderFcts= [];
 var renderer, scene, camera, controls;
@@ -42,8 +44,6 @@ var light_ambient, light_01, light_02, light_03, light_mouse;
 
 // the characers in the name
 var chars = [];
-
-
 
 //////////////////////////////////////////////////////////////////////////////////
 //		Support Functions
@@ -106,7 +106,7 @@ renderButton.addEventListener('click', function() {
 
 
 function getText() {
-  var textfield = document.getElementById('textfield').value;
+  textfield = textfieldOriginal = document.getElementById('textfield').value;
   // remove non-alphanumeric characters
   textfield = textfield.toLowerCase();
   textfield = textfield.replace("/[A-Za-z0-9 \-_.\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF]",'');
@@ -165,6 +165,7 @@ function hslToRgb(h, s, l){
 // });
 
 function generateImagefromCanvas() {
+
   var imgData, imgNode;
 
   var imgContainer = document.getElementById('outputContainer');
@@ -223,6 +224,7 @@ function init() {
     charCode = parseInt(charCode);
     if(charCode >= 97 && charCode <= 122) {
       var characterHue = charCode.map(97, 122, 0, 1);
+      console.log(charCode + " " + characterHue);
     } else {
       console.log('not a lowercase character or an umlaut');
       var characterHue = Math.random();
@@ -232,8 +234,11 @@ function init() {
     // hue: map letter
     // saturation: 100%
     // brightness: 46%
+    var randomSaturation = ( Math.random() * 72 + 28 ) / 100;
+    var randomLightness = ( Math.random() * 36 + 46 ) / 100;
 
-    var characterColor = hslToRgb(characterHue, 1, .46);
+    // var characterColor = hslToRgb(characterHue, randomSaturation, randomLightness);
+    var characterColor = hslToRgb(characterHue, Math.random(), Math.random());
 
     generateElement(i, characterColor, characterHue);
   }
@@ -257,34 +262,81 @@ function init() {
   light_03.position.set( -50, 50, -50 );
   scene.add( light_03 );
 
-  // light_mouse = new THREE.PointLight( 0x333333, 0.1, 100 );
-  // scene.add( light_mouse );
+  //////////////////////////////////////////////////////////////////////////////////
+  //		Name
+  //////////////////////////////////////////////////////////////////////////////////
+
+  //create image
+  var bitmap = document.createElement('canvas');
+  var g = bitmap.getContext('2d');
+  bitmap.width = 2000;
+  bitmap.height = 1000;
+  g.font = 'Bold 100px Helvetica';
+
+  g.fillStyle = 'white';
+  g.fillText(textfieldOriginal, 0, 100);
+  // g.strokeStyle = 'black';
+  // g.strokeText(textfield, 0, 20);
+
+  // canvas contents will be used for a texture
+  var text_texture = new THREE.Texture(bitmap)
+  text_texture.needsUpdate = true;
+
+  var text_geometry = new THREE.PlaneGeometry(1, .5);
+  var text_material = new THREE.MeshBasicMaterial({map: text_texture, overdraw: 0.5, transparent: true});
+  var text_mesh = new THREE.Mesh(text_geometry, text_material);
+
+  text_mesh.position.x = 1.45;
+  text_mesh.position.y = .6;
+  text_mesh.position.z = 2;
+
+  var showname = document.getElementById('showname').checked;
+
+  if(showname) {
+      scene.add(text_mesh);
+  }
+
+
+  //////////////////////////////////////////////////////////////////////////////////
+  //		Logo Image
+  //////////////////////////////////////////////////////////////////////////////////
+
+  var image = 'logo_white_outline.png';
+  var loader = new THREE.TextureLoader();
+  loader.load( image, function(texture) {
+    // 1728 × 908
+    var geometry = new THREE.PlaneGeometry(0.4, 0.4/1.904761905);
+    var material = new THREE.MeshBasicMaterial({map: texture, overdraw: 0.5, transparent: true});
+    var mesh = new THREE.Mesh(geometry, material);
+
+    var centered = document.getElementById('centered').checked;
+    if(centered) {
+      mesh.position.x = 1;
+      mesh.position.y = 1;
+      mesh.position.z = 2;
+    } else {
+      mesh.position.x = 0.65;
+      mesh.position.y = 1.2;
+      mesh.position.z = 2;
+    }
+
+    var showlogo = document.getElementById('showlogo').checked;
+    console.log(showlogo);
+    if(showlogo) {
+        scene.add(mesh);
+    }
 
 
 
-  render();
+    render();
+  });
+
+
 }
 
 
 init();
 
-
-//////////////////////////////////////////////////////////////////////////////////
-//		Logo Image
-//////////////////////////////////////////////////////////////////////////////////
-
-// var image = 'logo_white_outline.png';
-// var loader = new THREE.TextureLoader();
-// loader.load( image, function(texture) {
-//   // 1728 × 908
-//   var geometry = new THREE.PlaneGeometry(0.5, 0.5/1.904761905);
-//   var material = new THREE.MeshBasicMaterial({map: texture, overdraw: 0.5, transparent: true});
-//   var mesh = new THREE.Mesh(geometry, material);
-//   mesh.position.x = 1;
-//   mesh.position.y = 1.1;
-//   mesh.position.z = 2;
-//   scene.add(mesh);
-// });
 
 //////////////////////////////////////////////////////////////////////////////////
 //		generate the elements
@@ -295,7 +347,7 @@ function generateElement(index, color, hue) {
 
   if ( index != null ) {
     // set the radius of the object
-    var radiusFactor = numShards.map(0,100,0.4,0.0001);
+    var radiusFactor = numShards.map(0,20,0.4,0.0001);
     var shardRadius = Math.random() * radiusFactor;
 
     // Define the number of points of the object
@@ -342,6 +394,13 @@ function generateElement(index, color, hue) {
 
     shard_mesh.position.set( pos_x, pos_y, pos_z );
 
+    var rotationX = Math.random();
+    var rotationY = Math.random();
+    var rotationZ = Math.random();
+    shard_mesh.rotation.x = rotationX;
+    shard_mesh.rotation.y = rotationY;
+    shard_mesh.rotation.z = rotationZ;
+
     shards.push( shard_mesh );
 
     scene.add( shard_mesh );
@@ -356,6 +415,7 @@ function generateElement(index, color, hue) {
 window.addEventListener('resize', function(){
   setLogoSize();
   renderer.setSize( logo_width, logo_height );
+  renderer.setPixelRatio( window.devicePixelRatio * 4 );
   // renderer.setSize( window.innerWidth, window.innerHeight )
   camera.aspect	= logo_width / logo_height;
   camera.updateProjectionMatrix();
@@ -380,6 +440,8 @@ function getMousePosition(e) {
 }
 
 function render() {
+
+
 
   // render the scene
   onRenderFcts.push(function(){

@@ -31,6 +31,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/helvetiker_regular.typeface.json": {
+		"fileType": 524288,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/helvetiker_regular.typeface.json",
+		"orderOutput": 0,
+		"outputAbbreviatedPath": "\/helvetiker_regular.typeface-min.json",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1
+		},
 	"\/index.html": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -186,6 +197,28 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/require.js\/require.js",
 		"outputAbbreviatedPath": "\/vendor\/require.js\/min\/require-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/vendor\/three.js\/build\/FontLoader.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/three.js\/build\/FontLoader.js",
+		"outputAbbreviatedPath": "\/vendor\/three.js\/build\/min\/FontLoader-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/vendor\/three.js\/build\/min\/GeometryUtils-min.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/three.js\/build\/min\/GeometryUtils-min.js",
+		"outputAbbreviatedPath": "\/vendor\/three.js\/build\/min\/min\/GeometryUtils-min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
