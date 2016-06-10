@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<script src='vendor/three.js/build/three.min.js'></script>
+
+
+	<script src='games_and_color_variables.js'></script>
+	<!-- <link rel="stylesheet" href="style.css"> -->
+	<style>
+		body {
+			background-color: rgb(66, 66, 66);
+			margin: 0 auto;
+			color: white;
+			font-family: 'Helvetica Neue', sans-serif;
+		}
+
+		h1, h2, h3, h4 {
+			font-weight: 100;
+		}
+
+		#controls {
+			margin: 3rem;
+			font-weight: 100 !important;
+
+		}
+
+		#logoContainer {
+			background-color: rgb(33, 37, 43);
+			margin: 3rem;
+			box-shadow: 10px 10px 50px black;
+		}
+
+		#outputContainer {
+			max-width: 100%;
+			margin: 3rem;
+		}
+
+		.outputImage {
+			max-width: 100%;
+			max-height: 50vh;
+			margin: 2rem 0;
+			box-shadow: 10px 10px 50px black;
+			background-color: rgb(33, 37, 43) !important;
+		}
+
+		canvas {
+			display: none;
+		}
+
+		#textfield {
+			height: 2rem;
+			font-size: 1.5rem;
+			line-height: 2rem;
+			box-sizing: border-box;
+			padding: 10px 1rem;
+			outline: 0;
+			border: none;
+		}
+
+		input[type=text] {
+			background-color: rgba(33, 37, 43, 0.5) !important;
+			color: white;
+			font-family: 'Helvetica Neue', sans-serif;
+			font-weight: 300;
+		}
+
+		hr {
+			border: none;
+			outline: none;
+		}
+
+		#renderButton {
+			box-sizing: border-box;
+			border: none;
+			border-radius: 5px;
+			height: 2rem;
+			font-size: 1.5rem;
+			line-height: 2rem;
+			padding: 0 1rem;
+			display: inline-block;
+			font-size: 1rem;
+			background-color: hsl(42, 100%, 46%);
+			transition: all 0.1s ease-in-out;
+			color: black;
+			font-weight: 500;
+		}
+
+		#renderButton:hover {
+			background-color: hsl(51, 100%, 45%);
+		}
+
+		#renderButton:active {
+			background-color: hsl(38, 100%, 45%);
+		}
+	</style>
+</head>
+<body>
+	<div id="controls">
+		<h1>PixelCotton Print Graphic Generator</h1>
+		<label for="canvasWidth">Width in pixels: </label><input type="text" id="canvasWidth" placeholder="width" value="1004">
+		<label for="canvasHeight">Height in pixels: </label><input type="text" id="canvasHeight" placeholder="height" value="650">
+		<hr>
+		<input type="text" id="textfield" placeholder="enter your name">
+		<div id="renderButton">Render</div>
+		<p>Right-click on the output image and choose 'save as'</p>
+	</div>
+	<div id="logoContainer"></div>
+	<div id="outputContainer">
+
+	</div>
+
+<script src='pixelCottonIdentityPrint.js'></script>
+</body>
