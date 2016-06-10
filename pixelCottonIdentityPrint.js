@@ -347,7 +347,7 @@ function generateElement(index, color, hue) {
 
   if ( index != null ) {
     // set the radius of the object
-    var radiusFactor = numShards.map(0,20,0.4,0.0001);
+    var radiusFactor = numShards.map(0,25,0.4,0.0001);
     var shardRadius = Math.random() * radiusFactor;
 
     // Define the number of points of the object
@@ -388,8 +388,8 @@ function generateElement(index, color, hue) {
     var shard_mesh = new THREE.Mesh( shard, shard_material );
     shardRotation.push(Math.random(-3,3));
 
-    var pos_x = Math.random() + 0.5;
-    var pos_y = Math.random() * 0.5 + 0.75;
+    var pos_x = Math.random() * 2;  // + 0.5
+    var pos_y = Math.random() + 0.5;
     var pos_z = Math.random() * 0.5 + 1;
 
     shard_mesh.position.set( pos_x, pos_y, pos_z );
