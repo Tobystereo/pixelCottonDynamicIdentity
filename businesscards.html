@@ -41,7 +41,25 @@
 			max-height: 50vh;
 			margin: 2rem 0;
 			box-shadow: 10px 10px 50px black;
-			background-color: rgb(33, 37, 43) !important;
+
+			background-color: hsl(213, 13%, 14%);
+
+			background-image:
+      -moz-linear-gradient(45deg, hsl(213, 13%, 15%) 25%, transparent 25%),
+      -moz-linear-gradient(-45deg, hsl(213, 13%, 15%) 25%, transparent 25%),
+      -moz-linear-gradient(45deg, transparent 75%, hsl(213, 13%, 15%) 75%),
+      -moz-linear-gradient(-45deg, transparent 75%, hsl(213, 13%, 15%) 75%);
+	    background-image:
+	      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.25, hsl(213, 13%, 15%)), color-stop(.25, transparent)),
+	      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, hsl(213, 13%, 15%)), color-stop(.25, transparent)),
+	      -webkit-gradient(linear, 0 100%, 100% 0, color-stop(.75, transparent), color-stop(.75, hsl(213, 13%, 15%))),
+	      -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.75, transparent), color-stop(.75, hsl(213, 13%, 15%)));
+
+	    -moz-background-size:100px 100px;
+	    background-size:100px 100px;
+	    -webkit-background-size:100px 101px; /* override value for shitty webkit */
+
+	    background-position:0 0, 50px 0, 50px -50px, 0px 50px;
 		}
 
 		canvas {
@@ -107,8 +125,9 @@
 		<label for="showlogo">show logo: </label><input type="checkbox" id="showlogo" checked=checked>
 		<label for="centered">center logo: </label><input type="checkbox" id="centered" checked=checked>
 		<label for="showname">show name: </label><input type="checkbox" id="showname" checked=checked>
+		<label for="transparentbackground">transparent background: </label><input type="checkbox" id="transparentbackground">
 		<hr>
-		<input type="text" id="textfield" placeholder="enter your name">
+		<input type="text" id="textfield" placeholder="enter your name" value="Your Name">
 		<div id="renderButton">Render</div>
 		<p>Right-click on the output image and choose 'save as'</p>
 	</div>

@@ -121,6 +121,8 @@ function getText() {
   return
 }
 
+getText();
+
 /**
  * Converts an HSL color value to RGB. Conversion formula
  * adapted from http://en.wikipedia.org/wiki/HSL_color_space.
@@ -203,6 +205,11 @@ function init() {
       alpha: true,
       preserveDrawingBuffer: true
   });
+
+  var transparentbackground = document.getElementById('transparentbackground').checked;
+  if(!transparentbackground) {
+      renderer.setClearColor(0x21252B);
+  }
   renderer.setSize( logo_width, logo_height );
 
   //////////////////////////////////////////////////////////////////////////////////
@@ -271,7 +278,7 @@ function init() {
   var g = bitmap.getContext('2d');
   bitmap.width = 2000;
   bitmap.height = 1000;
-  g.font = 'Bold 100px Helvetica';
+  g.font = 'Normal 100px Helvetica';
 
   g.fillStyle = 'white';
   g.fillText(textfieldOriginal, 0, 100);
@@ -301,7 +308,7 @@ function init() {
   //		Logo Image
   //////////////////////////////////////////////////////////////////////////////////
 
-  var image = 'logo_white_outline.png';
+  var image = 'logo_white.png';
   var loader = new THREE.TextureLoader();
   loader.load( image, function(texture) {
     // 1728 × 908
