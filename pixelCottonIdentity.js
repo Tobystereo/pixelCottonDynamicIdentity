@@ -167,7 +167,7 @@ function generateElement(i) {
   console.log('index: ' + index);
 
   if ( index != null ) {
-    // set the radius of the object
+    // set the radius of the object - max number of elements mapped to max radius
     var radiusFactor = numShards.map(0,100,0.4,0.0001);
     var shardRadius = Math.random() * radiusFactor;
 
@@ -296,6 +296,24 @@ function rotateShards() {
     shards[i].rotation.y -= SPEED;
     shards[i].rotation.z -= SPEED * shardRotation[i];
   }
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+//		on-page styling
+//////////////////////////////////////////////////////////////////////////////////
+
+// if there is only one game mentioned in the body tag, color the borders of all shop-items red
+var border_color;
+
+if (games_on_page.length == 1) {
+    var i = findGameIndexByName(games_on_page[0]);
+    border_color = games[i].color;
+    var cards = document.getElementsByClassName('card');
+    for(var j=0; j<cards.length; j++) {
+      cards[j].style.borderColor = border_color;
+    }
+
+
 }
 
 
